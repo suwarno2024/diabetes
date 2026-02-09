@@ -468,7 +468,7 @@ def plot_metrics_comparison(results_dict):
             name=model_name,
             line=dict(color=colors[i % len(colors)], width=2),
             fill='toself',
-            fillcolor=f"rgba({','.join(str(int(c)) for c in px.colors.hex_to_rgb(colors[i % len(colors)]))},0.08)"
+            fillcolor=colors[i % len(colors)].replace(')', ',0.08)').replace('rgb', 'rgba') if 'rgb' in colors[i % len(colors)] else f"rgba(14,165,233,0.08)"
         ))
     fig.update_layout(
         title=dict(text="Model Performance Radar", font=dict(size=16, color="#cbd5e1")),
@@ -1012,9 +1012,11 @@ def main():
             title="Metric Comparison Across Models"
         )
         fig_bar.update_layout(
+            **PLOTLY_TEMPLATE['layout'].to_plotly_json()
+        )
+        fig_bar.update_layout(
             height=450,
             yaxis=dict(range=[0, 1]),
-            **PLOTLY_TEMPLATE['layout'].to_plotly_json()
         )
         st.plotly_chart(fig_bar, use_container_width=True)
 
