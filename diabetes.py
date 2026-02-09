@@ -291,7 +291,7 @@ MODEL_REGISTRY = {
         "desc": "Sequentially builds weak learners, each correcting errors of the previous one."
     },
     "AdaBoost": {
-        "model": AdaBoostClassifier(n_estimators=150, learning_rate=0.8, random_state=42, algorithm='SAMME'),
+        "model": AdaBoostClassifier(n_estimators=150, learning_rate=0.8, random_state=42),
         "type": "Ensemble",
         "complexity": "⭐⭐⭐",
         "desc": "Adaptively boosts weak classifiers by reweighting misclassified samples."
